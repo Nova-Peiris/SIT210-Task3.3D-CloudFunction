@@ -1,0 +1,32 @@
+int led = D7;
+
+void eventHandler(const char *event, const char *data) {
+    
+    int Wave = strcmp(data, "wave"); //Comparing values
+    
+    //function for wave 
+    if(Wave == 0)
+    {
+        digitalWrite(led, HIGH);
+        delay(1000);
+        digitalWrite(led, LOW);
+        delay(1000);
+    
+        digitalWrite(led, HIGH);
+        delay(1000);
+        digitalWrite(led, LOW);
+        delay(1000);
+    
+        digitalWrite(led, HIGH);
+        delay(1000);
+        digitalWrite(led, LOW);
+        delay(1000);
+    }
+}
+
+void setup() {
+    pinMode(led, OUTPUT);
+    
+    //subscribing the event
+    Particle.subscribe("Deakin_RIOT_SIT210_Photon_Buddy", eventHandler);
+}
